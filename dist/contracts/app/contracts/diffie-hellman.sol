@@ -29,7 +29,7 @@ contract DiffieHellman
 	
 	
 	
-	function SimpleStorage(string p, string g)
+	function DiffieHellman(string p, string g)
 	{
 		defaultp = p;
 		defaultg = g;
@@ -37,64 +37,66 @@ contract DiffieHellman
 	
 	function startConnection(address receiver, string iv, string p, string g)
 	{
-		connections[receiver][msg.sender] = Connection(p, g, iv);
+		connections[receiver][msg.sender] = Connection(p, g, iv, "", "", "", "");
 	}
 	function startConnection(address receiver, string iv)
 	{
 		startConnection(receiver, iv, defaultp, defaultg);
 	}
-	//WARNING: DO NOT USE! block.parenthash can be manipulated by miners
-	function startConnection(address receiver)
+	
+	//WARNING: DO NOT USE! likely any "random" number can be manipulated by miners
+	//TODO: find random number generator in ethereum
+	/*function startConnection(address receiver)
 	{
-		startConnection(receiver, block.parenthash);
-	}
+		startConnection(receiver, <RANDOMNUMBER>);
+	}/**/
 	
 	
 	
-	function seta(address receiver, string newa)
+	/*function seta(address receiver, string newa)
 	{
 		connections[receiver][msg.sender].a = newa;
 	}
-	
+	/*
 	function setb(address sender, string newb)
 	{
 		connections[msg.sender][sender].b = newb;
 	}
 	
-	function getp(address receiver, address sender)
+	function getp(address receiver, address sender) constant returns (string p)
 	{
 		return connections[receiver][sender].p;
 	}
-	function getp(address receiver) constant
+	function getp(address receiver) constant returns (string p)
 	{
 		return getp(receiver, msg.sender);
 	}
 	
-	function getg(address receiver, address sender)
+	function getg(address receiver, address sender) constant returns (string g)
 	{
 		return connections[receiver][sender].g;
 	}
-	function getg(address receiver) constant
+	function getg(address receiver) constant returns (string g)
 	{
 		return getg(receiver, msg.sender);
 	}
 	
 	
-	function geta(address sender, address receiver) constant
+	function geta(address sender, address receiver) constant returns (string a)
 	{
 		return connections[receiver][sender].a;
 	}
-	function geta(address receiver) constant
+	function geta(address receiver) constant  returns (string a)
 	{
 		return geta(msg.sender, receiver);
 	}
 	
-	function getb(address sender, address receiver) constant
+	function getb(address sender, address receiver) constant  returns (string b)
 	{
 		return connections[receiver][sender].b;
 	}
-	function getb(address receiver) constant
+	function getb(address receiver) constant returns (string b)
 	{
 		return getb(msg.sender, receiver);
-	}
+	}/**/
 }
