@@ -1,0 +1,10 @@
+development:
+  SimpleStorage:
+    args:
+      - "17"
+      - "3"
+staging:
+  SimpleStorage:
+    args:
+      - "17"
+      - "3"
