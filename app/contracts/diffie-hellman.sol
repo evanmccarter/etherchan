@@ -95,6 +95,6 @@ contract DiffieHellman
 	}
 	function getb(address receiver) constant
 	{
-		return getb(msg.sender, address receiver);
+		return getb(msg.sender, receiver);
 	}
 }
